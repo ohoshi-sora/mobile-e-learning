@@ -6,7 +6,7 @@ import org.wicketstuff.annotation.mount.MountPath;
 
 @WicketHomePage
 @MountPath("Home")
-public class HomePage {
+public class HomePage extends WebPage {
     public HomePage(){
     }
 }
