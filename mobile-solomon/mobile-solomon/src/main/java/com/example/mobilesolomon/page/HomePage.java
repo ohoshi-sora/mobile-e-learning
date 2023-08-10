@@ -8,6 +8,6 @@ import org.wicketstuff.annotation.mount.MountPath;
 @MountPath("Home")
 public class HomePage extends WebPage {
     public HomePage(){
-
+        // あいうえお
     }
 }
