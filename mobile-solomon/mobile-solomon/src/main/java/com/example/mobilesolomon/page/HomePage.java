@@ -9,5 +9,6 @@ import org.wicketstuff.annotation.mount.MountPath;
 public class HomePage extends WebPage {
     public HomePage(){
         // あいうえお
+        // かきKUKEKO
     }
 }
