@@ -14,4 +14,4 @@ public class HintMakerPage extends WebPage {
 
 }
 
-//WebPage間を移動する 01 WebPageクラスのサブクラスを作成までやった
+// WebPage間を移動する 01 WebPageクラスのサブクラスを作成までやった
