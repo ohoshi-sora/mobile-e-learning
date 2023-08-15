@@ -10,6 +10,7 @@ public class HintMakerPage extends WebPage {
 
     public HintMakerPage() {
 
+
     }
 
 }
