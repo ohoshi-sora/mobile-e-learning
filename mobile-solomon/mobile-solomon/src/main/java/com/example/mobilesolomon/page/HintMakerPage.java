@@ -1,6 +1,7 @@
 package com.example.mobilesolomon.page;
 
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.wicketstuff.annotation.mount.MountPath;
 
 
@@ -9,8 +10,8 @@ import org.wicketstuff.annotation.mount.MountPath;
 public class HintMakerPage extends WebPage {
 
     public HintMakerPage() {
-
-
+        var toHomeLink = new BookmarkablePageLink<>("toHome", HomePage.class);
+        add(toHomeLink);
     }
 
 }
