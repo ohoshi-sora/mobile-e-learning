@@ -4,8 +4,8 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.wicketstuff.annotation.mount.MountPath;
 
+// 問題を選択して、ヒントを自動で表示ページ
 
-// ヒントを作るページ
 @MountPath("HintMaker")
 public class HintMakerPage extends WebPage {
 
