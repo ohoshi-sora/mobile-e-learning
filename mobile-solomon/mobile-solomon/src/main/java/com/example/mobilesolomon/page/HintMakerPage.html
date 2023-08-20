@@ -7,6 +7,7 @@
 <h1>ヒントを作成する</h1>
 <form action="#">
   <h2>操作1</h2><!--画面見やすくなるようにつけてみた-->
+  <p>問題を入力してください</p>
   <div><input type="text"/></div>
   <div>
     <button type="submit">ヒントを作成する</button>
@@ -18,8 +19,22 @@
     <input type="submit" value="アップロード">
   </form>
   <h2>操作3</h2>
+  <p>正答を選択してください</p>
+  <select>
+    <option value="a">ア</option>
+    <option value="i">イ</option>
+    <option value="u">ウ</option>
+    <option value="e">エ</option>
+  </select>
+  <p></p>
+  <p></p>
+  <button id=AutoHint type="submit">ヒント自動生成</button><!--まだできないよ-->
 
 
+
+
+
+  <p>ページ遷移リンク</p>
   <div><a href="#" wicket:id="toHintPreview">ヒントプレビューの画面へ(確認用)</a></div>
   <div><a href="#" wicket:id="toHome">Homeに戻る</a></div>
 </form>
