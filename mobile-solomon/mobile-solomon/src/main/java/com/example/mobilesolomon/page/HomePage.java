@@ -10,8 +10,6 @@ public class HomePage extends WebPage {
     public HomePage(){
         var toHintMakerLink = new BookmarkablePageLink<>("toHintMaker", HintMakerPage.class);
         add(toHintMakerLink);
-        // あいうえお
-        // かきKUKEKO
-        // さしすせso!
     }
+
 }
