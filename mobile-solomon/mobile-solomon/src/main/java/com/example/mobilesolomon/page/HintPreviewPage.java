@@ -4,7 +4,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.wicketstuff.annotation.mount.MountPath;
 
-//
+// 生成したヒントを見ることができ、ヒントを修正するのか、確定するのかを選択できる
 
 @MountPath("HintPreview")
 public class HintPreviewPage extends WebPage {
