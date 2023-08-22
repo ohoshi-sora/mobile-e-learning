@@ -1,39 +1,36 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
-  <meta charset="utf-8">
-  <title>ヒント作成ページ</title>
+    <meta charset="utf-8">
+    <title>ヒント作成ページ</title>
 </head>
 <body>
 <h1>ヒントを作成する</h1>
 <form action="#">
-  <h2>操作1</h2><!--画面見やすくなるようにつけてみた-->
-  <p>問題を入力してください</p>
-  <div><input type="text"/></div>
-  <h2>操作2</h2>
-  <form action="#" method="post" enctype="multipart/form-data">
-    <label for="file">画像を選択:</label>
-    <input type="file" name="file" id="file"><br>
-    <input type="submit" value="アップロード">
-  </form>
-  <h2>操作3</h2>
-  <p>正答を選択してください</p>
-  <select>
-    <option value="a">ア</option>
-    <option value="i">イ</option>
-    <option value="u">ウ</option>
-    <option value="e">エ</option>
-  </select>
-  <p></p>
-  <p></p>
-  <button id=AutoHint type="submit">ヒント自動生成</button><!--まだできないよ-->
+    <h2>操作1</h2><!--画面見やすくなるようにつけてみた-->
+    <p>問題を入力してください</p>
+    <div><input type="text"/></div>
+    <h2>操作2</h2>
+    <form action="#" method="post" enctype="multipart/form-data">
+        <label for="file">画像を選択:</label>
+        <input type="file" name="file" id="file"><br>
+        <input type="submit" value="アップロード">
+    </form>
+    <h2>操作3</h2>
+    <p>正答を選択してください</p>
+    <select>
+        <option value="a">ア</option>
+        <option value="i">イ</option>
+        <option value="u">ウ</option>
+        <option value="e">エ</option>
+    </select>
+    <p></p>
+    <p></p>
+    <button id=AutoHint type="submit">ヒント自動生成</button><!--まだできないよ-->
 
 
-
-
-
-  <p>ページ遷移リンク</p>
-  <div><a href="#" wicket:id="toHintPreview">ヒントプレビューの画面へ(確認用)</a></div>
-  <div><a href="#" wicket:id="toHome">Homeに戻る</a></div>
+    <p>ページ遷移リンク</p>
+    <div><a href="#" wicket:id="toHintPreview">ヒントプレビューの画面へ(確認用)</a></div>
+    <div><a href="#" wicket:id="toHome">Homeに戻る</a></div>
 </form>
 </body>
 </html>
