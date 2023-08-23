@@ -5,10 +5,14 @@
 </head>
 <body>
 <h1>ヒントを作成する</h1>
-<form action="#">
     <h2>操作1</h2><!--画面見やすくなるようにつけてみた-->
     <p>問題を入力してください</p>
-    <div><input type="text"/></div>
+    <div>
+        <form wicket:id="form">
+            <input type="text" wicket:id="question"/>
+            <button wicket:id="submit">確定</button>
+        </form>
+    </div>
     <h2>操作2</h2>
     <form action="#" method="post" enctype="multipart/form-data">
         <label for="file">画像を選択:</label>
@@ -31,6 +35,5 @@
     <p>ページ遷移リンク</p>
     <div><a href="#" wicket:id="toHintPreview">ヒントプレビューの画面へ(確認用)</a></div>
     <div><a href="#" wicket:id="toHome">Homeに戻る</a></div>
-</form>
 </body>
 </html>
