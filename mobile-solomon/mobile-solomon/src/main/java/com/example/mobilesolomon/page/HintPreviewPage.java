@@ -12,6 +12,8 @@ public class HintPreviewPage extends WebPage {
     public HintPreviewPage() {
         var toHintMakerLink = new BookmarkablePageLink<>("toHintMaker", HintMakerPage.class);
         add(toHintMakerLink);
+        var toHintMakeCompLink = new BookmarkablePageLink<>("toHintMakeComp", HintMakeCompPage.class);
+        add(toHintMakeCompLink);
         var toHomeLink = new BookmarkablePageLink<>("toHome", HomePage.class);
         add(toHomeLink);
 
