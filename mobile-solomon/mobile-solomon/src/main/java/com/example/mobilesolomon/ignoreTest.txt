@@ -1,2 +1,0 @@
-password=hoge
-key=hoge
