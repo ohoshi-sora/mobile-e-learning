@@ -1,5 +1,5 @@
-/秘密のファイル.txt
-wanwanshowa.txt
+# api key
+.env
 
 HELP.md
 target/
