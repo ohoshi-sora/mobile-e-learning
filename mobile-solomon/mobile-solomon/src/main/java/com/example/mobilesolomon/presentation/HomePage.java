@@ -1,4 +1,4 @@
-package com.example.mobilesolomon.page;
+package com.example.mobilesolomon.presentation;
 
 import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
 import org.apache.wicket.markup.html.WebPage;

@@ -1,4 +1,4 @@
-package com.example.mobilesolomon.page;
+package com.example.mobilesolomon.presentation;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
