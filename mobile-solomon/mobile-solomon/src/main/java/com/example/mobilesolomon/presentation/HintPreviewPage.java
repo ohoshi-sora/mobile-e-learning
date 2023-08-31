@@ -14,8 +14,7 @@ import com.example.mobilesolomon.presentation.HintMakerPage;
 public class HintPreviewPage extends WebPage {
 
     public HintPreviewPage() {
-        var test = new HintMakerPage().getQuestion();
-        add(new Label("test",test));
+        add(new Label("test", new HintMakerPage().getQuestion()));
         var toHintMakerLink = new BookmarkablePageLink<>("toHintMaker", HintMakerPage.class);
         add(toHintMakerLink);
         var toHintMakeCompLink = new BookmarkablePageLink<>("toHintMakeComp", HintMakeCompPage.class);
