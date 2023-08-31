@@ -2,6 +2,7 @@ package com.example.mobilesolomon.presentation;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -22,7 +23,7 @@ public class HintMakerPage extends WebPage {
         add(toHomeLink);
 
         Form<HintMakerPage> form = new Form<>("form", new CompoundPropertyModel<>(this));
-        TextField<String> textField = new TextField<>("question");
+        TextArea<String> textField = new TextArea<>("question");
         form.add(textField);
 
         form.add(new SubmitButton("submit"));
@@ -48,6 +49,10 @@ public class HintMakerPage extends WebPage {
             // コンソールに出力　入力された文章いじれるか確認
             System.out.println("入力された文章（問題）:" + question);
         }
+    }
+
+    public String getQuestion(){
+        return question;
     }
 
 }
