@@ -52,7 +52,7 @@ public class HintService {
 
 
 
-        return choiceList;
+        return null;//choiceList;
         // 作られたヒントをreturnすることで、hintLogクラスでこのクラスのインスタンスを使うことでデータをlogにいれて
         //そこからいろいろつかうようにする
     }
