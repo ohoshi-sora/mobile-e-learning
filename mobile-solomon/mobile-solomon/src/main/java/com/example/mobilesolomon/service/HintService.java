@@ -22,7 +22,7 @@ public class HintService {
 
 
 //　　ここでapiをたたく、レスポンスをうけとる
-    public String HintService() {
+    public HintService() {
 
         //　APIキーを取得している
         HintApiReader apiReader = new HintApiReader();
@@ -51,8 +51,6 @@ public class HintService {
         }
 
 
-
-        return choiceList;
         // 作られたヒントをreturnすることで、hintLogクラスでこのクラスのインスタンスを使うことでデータをlogにいれて
         //そこからいろいろつかうようにする
     }
@@ -63,13 +61,7 @@ public class HintService {
 //        HintApiReader apiReader = new HintApiReader();
 //        System.out.println(apiReader.getAPI_KEY());
 //    }
-//
-//    // debug用　コンソールにgptのレスポンスが表示されるはず
-//    // できないいいいいいいいいいいいいい
-//    public static void main(String[] args) {
-//        HintService h = new HintService();
-//        System.out.println(h.HintService());
-//    }
+
 
 
 }
