@@ -15,81 +15,44 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class HintService {
+
     private String API_KEY;
     private String prompt; // ChatGPTに送るプロンプト
     private String hint_madeByGPT; // ChatGPTから返ってきたヒント
 
 
-    /*
-　　ここでapiをたたく、
-　　レスポンスをうけとる
- 　　*/
+//　　ここでapiをたたく、レスポンスをうけとる
     public String HintService() {
 
+        //　APIキーを取得している
         HintApiReader apiReader = new HintApiReader();
-        this.API_KEY = apiReader.getAPI_KEY();
-        //System.out.println(API_KEY); debug
+        String API_KEY = apiReader.getAPI_KEY();
 
+        // ライブラリを利用して、インスタンスを生成
+        final var service = new OpenAiService(API_KEY);
 
-        /*
-        HintPromptMaker promptMaker = new HintPromptMaker();
-        this.prompt = promptMaker.getPrompt();
-        こんな感じで
-         */
+        // プロンプト
+        String message = "やっぱり、冬の鍋はおいしいですね。";
+        final var prompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever.\nHuman: " + message
+                + "\nAI: ";
 
-        //ここをかく　プロンプトは違うクラスで加工する？
-        this.prompt = "こんにちは、chatGPT。これはテストだよ。";
+        // ここでリクエストをしている　生成された選択肢をListに格納している。
+        final var completionRequest = CompletionRequest.builder()
+                .model("text-davinci-003")
+                .prompt(prompt)
+                .maxTokens(256)
+                .build();
+        final var completionResult = service.createCompletion(completionRequest);
+        final var choiceList = completionResult.getChoices();
 
-//        // HTTPクライアントのやつ
-//        OkHttpClient client = new OkHttpClient();
-//        // json扱うためのインスタンス
-//        Gson gson = new Gson();
-
-//        Map<String, Object> requestBody = new HashMap<>();
-//        requestBody.put("prompt", this.prompt);
-//        requestBody.put("max_tokens", 100); //これはどうしましょう
-//        requestBody.put("n", 1); // これはなにかもわかんない
-//        requestBody.put("stop",null); // これもなんだろ
-
-//        String jsonRequestBody = gson.toJson(requestBody);
-//        RequestBody body = RequestBody.create(jsonRequestBody, MediaType.parse("application/json; charset=utf-8"));
-//        Request request = new Request.Builder()
-//                .url("https://api.openai.com/v1/engines/davinci-codex/completions")
-//                .post(body)
-//                .build();
-//
-//        try (Response response = client.newCall(request).execute()) {
-//            if(!response.isSuccessful()) {
-//                throw new IOException("Unexpected code" + response);
-//            }
-//
-//            String jsonResponse = response.body().string();
-//            Map<String, Object> apiResponse = gson.fromJson(jsonResponse, Map.class);
-//            String generatedText = ((List<Map<String, Object>>) apiResponse.get("choices"))
-//                    .get(0)
-//                    .get("text")
-//                    .toString();
-//            System.out.println("Generated Text : " + generatedText);
-//
-//            this.hint_madeByGPT = generatedText;
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-//        OpenAiService service = new OpenAiService(API_KEY);
-//        CompletionRequest completionRequest = CompletionRequest.builder()
-//                .prompt("こんにちは、chatGPT。深町先生について教えて")
-//                .model("ada")
-//                .echo(true)
-//                .build();
-//        service.createCompletion(completionRequest).getChoices().forEach(System.out::println);
+        // 出力
+        for (final CompletionChoice choice : choiceList) {
+            System.out.println(choice);
+        }
 
 
 
-
-
-        return hint_madeByGPT;
+        return choiceList;
         // 作られたヒントをreturnすることで、hintLogクラスでこのクラスのインスタンスを使うことでデータをlogにいれて
         //そこからいろいろつかうようにする
     }
@@ -107,34 +70,6 @@ public class HintService {
 //        HintService h = new HintService();
 //        System.out.println(h.HintService());
 //    }
-
-    public static void main(final String[] args) {
-
-        HintApiReader apiReader = new HintApiReader();
-        String API_KEY = apiReader.getAPI_KEY();
-
-
-        final var service = new OpenAiService(API_KEY);
-
-        System.out.println("\nCreating completion...");
-
-        final var message = "やっぱり、冬の鍋はおいしいですね。";
-        final var prompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever.\nHuman: " + message
-                + "\nAI: ";
-
-        final var completionRequest = CompletionRequest.builder()
-                .model("text-davinci-003")
-                .prompt(prompt)
-                .maxTokens(256)
-                .build();
-        final var completionResult = service.createCompletion(completionRequest);
-        final var choiceList = completionResult.getChoices();
-
-        for (final CompletionChoice choice : choiceList) {
-            System.out.println(choice);
-        }
-    }
-
 
 
 }
