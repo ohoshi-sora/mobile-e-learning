@@ -86,7 +86,7 @@ public class HintService {
 
 // debug用　APIキーがゲッターで呼び出せることを確認できた
 //    public static void main(String[] args) {
-//        HintAPIReader apiReader = new HintAPIReader();
+//        HintApiReader apiReader = new HintApiReader();
 //        System.out.println(apiReader.getAPI_KEY());
 //    }
 
