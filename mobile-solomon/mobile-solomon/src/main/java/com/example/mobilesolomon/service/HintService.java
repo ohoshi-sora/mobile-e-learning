@@ -32,9 +32,8 @@ public class HintService {
         final var service = new OpenAiService(API_KEY);
 
         // プロンプト
-        String message = "やっぱり、冬の鍋はおいしいですね。";
-        final var prompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever.\nHuman: " + message
-                + "\nAI: ";
+        HintPromptMaker promptMaker = new HintPromptMaker();
+        this.prompt = promptMaker.getPrompt();
 
         // ここでリクエストをしている　生成された選択肢をListに格納している。
         final var completionRequest = CompletionRequest.builder()
