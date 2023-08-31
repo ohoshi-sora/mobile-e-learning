@@ -1,5 +1,6 @@
 package com.example.mobilesolomon.presentation;
 
+import com.example.mobilesolomon.service.HintService;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
@@ -48,6 +49,9 @@ public class HintMakerPage extends WebPage {
             super.onSubmit();
             // コンソールに出力　入力された文章いじれるか確認
             System.out.println("入力された文章（問題）:" + question);
+
+            HintService hintService = new HintService();
+
         }
     }
 
