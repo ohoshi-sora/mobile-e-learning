@@ -10,11 +10,11 @@ public class HintLog {
     ここで受け取り、ここからゲッターを使ってプレゼンテーション層までもってく
      */
 
-    public HintLog() {
-        HintService hintService = new HintService();
-        this.hint_madeByGPT = hintService.HintService();
-
-    }
+//    public HintLog() {
+//        HintService hintService = new HintService();
+//        this.hint_madeByGPT = hintService.HintService();
+//
+//    }
 
     // geter
 
