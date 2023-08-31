@@ -2,6 +2,9 @@ package com.example.mobilesolomon.service;
 
 import com.example.mobilesolomon.data.HintApiReader;
 import com.google.gson.Gson;
+import com.theokanning.openai.OpenAiService;
+import com.theokanning.openai.completion.CompletionChoice;
+import com.theokanning.openai.completion.CompletionRequest;
 import okhttp3.*;
 
 import javax.print.attribute.standard.Media;
@@ -9,6 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 public class HintService {
     private String API_KEY;
@@ -36,43 +40,52 @@ public class HintService {
         //ここをかく　プロンプトは違うクラスで加工する？
         this.prompt = "こんにちは、chatGPT。これはテストだよ。";
 
-        // HTTPクライアントのやつ
-        OkHttpClient client = new OkHttpClient();
-        // json扱うためのインスタンス
-        Gson gson = new Gson();
+//        // HTTPクライアントのやつ
+//        OkHttpClient client = new OkHttpClient();
+//        // json扱うためのインスタンス
+//        Gson gson = new Gson();
 
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("prompt", this.prompt);
-        requestBody.put("max_tokens", 100); //これはどうしましょう
-        requestBody.put("n", 1); // これはなにかもわかんない
-        requestBody.put("stop",null); // これもなんだろ
-        requestBody.put("api_key", API_KEY);
+//        Map<String, Object> requestBody = new HashMap<>();
+//        requestBody.put("prompt", this.prompt);
+//        requestBody.put("max_tokens", 100); //これはどうしましょう
+//        requestBody.put("n", 1); // これはなにかもわかんない
+//        requestBody.put("stop",null); // これもなんだろ
 
-        String jsonRequestBody = gson.toJson(requestBody);
-        RequestBody body = RequestBody.create(jsonRequestBody, MediaType.parse("application/json; charset=utf-8"));
-        Request request = new Request.Builder()
-                .url("https://api.openai.com/v1/engines/davinci-codex/completions")
-                .post(body)
-                .build();
+//        String jsonRequestBody = gson.toJson(requestBody);
+//        RequestBody body = RequestBody.create(jsonRequestBody, MediaType.parse("application/json; charset=utf-8"));
+//        Request request = new Request.Builder()
+//                .url("https://api.openai.com/v1/engines/davinci-codex/completions")
+//                .post(body)
+//                .build();
+//
+//        try (Response response = client.newCall(request).execute()) {
+//            if(!response.isSuccessful()) {
+//                throw new IOException("Unexpected code" + response);
+//            }
+//
+//            String jsonResponse = response.body().string();
+//            Map<String, Object> apiResponse = gson.fromJson(jsonResponse, Map.class);
+//            String generatedText = ((List<Map<String, Object>>) apiResponse.get("choices"))
+//                    .get(0)
+//                    .get("text")
+//                    .toString();
+//            System.out.println("Generated Text : " + generatedText);
+//
+//            this.hint_madeByGPT = generatedText;
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        try (Response response = client.newCall(request).execute()) {
-            if(!response.isSuccessful()) {
-                throw new IOException("Unexpected code" + response);
-            }
+//        OpenAiService service = new OpenAiService(API_KEY);
+//        CompletionRequest completionRequest = CompletionRequest.builder()
+//                .prompt("こんにちは、chatGPT。深町先生について教えて")
+//                .model("ada")
+//                .echo(true)
+//                .build();
+//        service.createCompletion(completionRequest).getChoices().forEach(System.out::println);
 
-            String jsonResponse = response.body().string();
-            Map<String, Object> apiResponse = gson.fromJson(jsonResponse, Map.class);
-            String generatedText = ((List<Map<String, Object>>) apiResponse.get("choices"))
-                    .get(0)
-                    .get("text")
-                    .toString();
-            System.out.println("Generated Text : " + generatedText);
 
-            this.hint_madeByGPT = generatedText;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
 
 
@@ -82,19 +95,46 @@ public class HintService {
     }
 
 
-
-
 // debug用　APIキーがゲッターで呼び出せることを確認できた
 //    public static void main(String[] args) {
 //        HintApiReader apiReader = new HintApiReader();
 //        System.out.println(apiReader.getAPI_KEY());
 //    }
+//
+//    // debug用　コンソールにgptのレスポンスが表示されるはず
+//    // できないいいいいいいいいいいいいい
+//    public static void main(String[] args) {
+//        HintService h = new HintService();
+//        System.out.println(h.HintService());
+//    }
 
-    // debug用　コンソールにgptのレスポンスが表示されるはず
-    // できないいいいいいいいいいいいいい
-    public static void main(String[] args) {
-        HintService h = new HintService();
-        System.out.println(h.HintService());
+    public static void main(final String[] args) {
+
+        HintApiReader apiReader = new HintApiReader();
+        String API_KEY = apiReader.getAPI_KEY();
+
+
+        final var service = new OpenAiService(API_KEY);
+
+        System.out.println("\nCreating completion...");
+
+        final var message = "やっぱり、冬の鍋はおいしいですね。";
+        final var prompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever.\nHuman: " + message
+                + "\nAI: ";
+
+        final var completionRequest = CompletionRequest.builder()
+                .model("text-davinci-003")
+                .prompt(prompt)
+                .maxTokens(256)
+                .build();
+        final var completionResult = service.createCompletion(completionRequest);
+        final var choiceList = completionResult.getChoices();
+
+        for (final CompletionChoice choice : choiceList) {
+            System.out.println(choice);
+        }
     }
+
+
 
 }
