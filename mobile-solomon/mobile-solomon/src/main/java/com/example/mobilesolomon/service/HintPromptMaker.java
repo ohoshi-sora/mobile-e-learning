@@ -11,6 +11,7 @@ public class HintPromptMaker {
         HintMakerPage hintMaker = new HintMakerPage();
         this.userInput = hintMaker.getQuestion();
 
+        // プロンプトを変更するのはここ！
         this.prompt = "以下の問題のヒントを作成して\n" + userInput;
 
     }

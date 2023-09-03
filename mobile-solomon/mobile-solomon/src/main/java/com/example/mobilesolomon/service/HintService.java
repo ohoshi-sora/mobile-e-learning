@@ -33,7 +33,8 @@ public class HintService {
 
         // プロンプト
         HintPromptMaker promptMaker = new HintPromptMaker();
-        this.prompt = promptMaker.getPrompt();
+        this.prompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever.\nHuman: " + promptMaker.getPrompt()
+                + "\nAI: ";
 
         // ここでリクエストをしている　生成された選択肢をListに格納している。
         final var completionRequest = CompletionRequest.builder()
@@ -46,16 +47,18 @@ public class HintService {
 
         // 出力
         for (final CompletionChoice choice : choiceList) {
-            System.out.println(choice);
+            System.out.println("chatGPTが作ったヒント：" + choice.getText());
+            hint_madeByGPT = choice.getText();
         }
 
 
-        // 作られたヒントをreturnすることで、hintLogクラスでこのクラスのインスタンスを使うことでデータをlogにいれて
-        //そこからいろいろつかうようにする
     }
 
+    public String getHint_madeByGPT() {
+        return hint_madeByGPT;
+    }
 
-// debug用　APIキーがゲッターで呼び出せることを確認できた
+    // debug用　APIキーがゲッターで呼び出せることを確認できた
 //    public static void main(String[] args) {
 //        HintApiReader apiReader = new HintApiReader();
 //        System.out.println(apiReader.getAPI_KEY());
