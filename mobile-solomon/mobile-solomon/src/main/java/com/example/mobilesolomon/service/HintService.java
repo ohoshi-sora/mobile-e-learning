@@ -1,20 +1,16 @@
 package com.example.mobilesolomon.service;
 
 import com.example.mobilesolomon.data.HintApiReader;
-import com.google.gson.Gson;
+import com.example.mobilesolomon.data.IHintLogRepository;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
-import okhttp3.*;
+import org.springframework.stereotype.Service;
 
-import javax.print.attribute.standard.Media;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+@Service
+public class HintService implements IHintService {
 
-public class HintService {
+    private IHintLogRepository hintLogRepos;
 
     private String API_KEY;
     private String prompt; // ChatGPTに送るプロンプト
@@ -22,7 +18,8 @@ public class HintService {
 
 
 //　　ここでapiをたたく、レスポンスをうけとる
-    public HintService() {
+    public HintService(IHintLogRepository hintLogRepos) {
+        this.hintLogRepos = hintLogRepos;
 
         //　APIキーを取得している
         HintApiReader apiReader = new HintApiReader();
@@ -50,10 +47,15 @@ public class HintService {
             System.out.println("chatGPTが作ったヒント：" + choice.getText());
             hint_madeByGPT = choice.getText();
         }
-
-
     }
 
+    @Override
+    public void register(int num, String question, String answer, String hint) {
+        int n = hintLogRepos.insert(num, question, answer, hint);
+        System.out.println("記録行数：" + n);
+    }
+
+    @Override
     public String getHint_madeByGPT() {
         return hint_madeByGPT;
     }

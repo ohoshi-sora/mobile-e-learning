@@ -72,7 +72,7 @@ public class HintMakerPage extends WebPage {
             // コンソールに出力　入力された文章いじれるか確認
             System.out.println("入力された文章（問題）:" + question);
 
-            HintService hintService = new HintService();
+            //HintService hintService = new HintService();
 
         }
     }
