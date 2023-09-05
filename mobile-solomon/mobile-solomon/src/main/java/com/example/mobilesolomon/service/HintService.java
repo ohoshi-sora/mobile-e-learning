@@ -5,6 +5,7 @@ import com.example.mobilesolomon.data.IHintLogRepository;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,9 +19,13 @@ public class HintService implements IHintService {
 
 
 //　　ここでapiをたたく、レスポンスをうけとる
+    @Autowired
     public HintService(IHintLogRepository hintLogRepos) {
         this.hintLogRepos = hintLogRepos;
+    }
 
+    @Override
+    public void register(int num, String question, String answer) {
         //　APIキーを取得している
         HintApiReader apiReader = new HintApiReader();
         String API_KEY = apiReader.getAPI_KEY();
@@ -47,18 +52,14 @@ public class HintService implements IHintService {
             System.out.println("chatGPTが作ったヒント：" + choice.getText());
             hint_madeByGPT = choice.getText();
         }
-    }
-
-    @Override
-    public void register(int num, String question, String answer, String hint) {
-        int n = hintLogRepos.insert(num, question, answer, hint);
+        int n = hintLogRepos.insert(num, question, answer, hint_madeByGPT);
         System.out.println("記録行数：" + n);
     }
 
-    @Override
-    public String getHint_madeByGPT() {
-        return hint_madeByGPT;
-    }
+//    @Override
+//    public String getHint_madeByGPT() {
+//        return hint_madeByGPT;
+//    }
 
     // debug用　APIキーがゲッターで呼び出せることを確認できた
 //    public static void main(String[] args) {

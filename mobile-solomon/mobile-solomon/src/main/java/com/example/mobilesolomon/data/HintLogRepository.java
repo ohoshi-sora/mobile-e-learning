@@ -18,7 +18,7 @@ public class HintLogRepository implements IHintLogRepository{
 
     @Override
     public int insert(int num, String question, String answer, String hint) {
-        var sql = "insert into auth_user values (?, ?, ?, ?)";
+        var sql = "insert into question values (?, ?, ?, ?)";
         var n = jdbcTemplate.update(sql, num, question,answer, hint);
         return n;
     }

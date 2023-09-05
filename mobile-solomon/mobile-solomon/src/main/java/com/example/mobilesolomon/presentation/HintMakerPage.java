@@ -1,6 +1,7 @@
 package com.example.mobilesolomon.presentation;
 
 import com.example.mobilesolomon.service.HintService;
+import com.example.mobilesolomon.service.IHintService;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.WebPage;
@@ -11,6 +12,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import java.util.Arrays;
@@ -19,6 +21,9 @@ import java.util.Arrays;
 
 @MountPath("HintMaker")
 public class HintMakerPage extends WebPage {
+    // IHintServiceをIoC/DIする
+    @SpringBean
+    private IHintService hintService;
 
     /**入力された問題文**/
     private String question;
@@ -72,7 +77,7 @@ public class HintMakerPage extends WebPage {
             // コンソールに出力　入力された文章いじれるか確認
             System.out.println("入力された文章（問題）:" + question);
 
-            //HintService hintService = new HintService();
+            hintService.register(1,question,"15");
 
         }
     }
