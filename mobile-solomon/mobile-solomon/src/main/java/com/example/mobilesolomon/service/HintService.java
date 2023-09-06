@@ -52,6 +52,8 @@ public class HintService implements IHintService {
             System.out.println("chatGPTが作ったヒント：" + choice.getText());
             hint_madeByGPT = choice.getText();
         }
+
+        // データベースに保存
         int n = hintLogRepos.insert(num, question, answer, hint_madeByGPT);
         System.out.println("記録行数：" + n);
     }
