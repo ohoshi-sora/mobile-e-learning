@@ -36,9 +36,9 @@ public class HintMakerPage extends WebPage {
         var toHomeLink = new BookmarkablePageLink<>("toHome", HomePage.class);
         add(toHomeLink);
 
-        Form<HintMakerPage> form = new Form<>("form", new CompoundPropertyModel<>(this));
-        TextArea<String> textField = new TextArea<>("question");
-        form.add(textField);
+        //Form<HintMakerPage> form = new Form<>("form", new CompoundPropertyModel<>(this));
+        //TextArea<String> textField = new TextArea<>("question");
+        //form.add(textField);
 
 //        DropDownChoice<String> dropdown = new DropDownChoice<>("select", new PropertyModel<>(this, "select"), Arrays.asList("a", "i", "u", "e"));
 //        add(dropdown);

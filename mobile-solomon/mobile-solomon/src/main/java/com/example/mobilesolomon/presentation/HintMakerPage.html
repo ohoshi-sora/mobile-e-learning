@@ -8,9 +8,10 @@
     <h2>操作1</h2><!--画面見やすくなるようにつけてみた-->
     <p>問題文と解答の選択肢を入力してください</p>
     <div>
-        <form wicket:id="form">
+        <!--<form wicket:id="form">
             <p><textarea wicket:id="question" cols="100" rows="20"></textarea></p>
-        </form>
+        </form>-->
+        <p><textarea cols="100" rows="20"></textarea></p>
     </div>
     <h2>操作2</h2>
     <form action="#" method="post" enctype="multipart/form-data">
@@ -23,20 +24,23 @@
         <label>
             <input type="radio" name="option" value="option1">選択肢1
         </label>
-        <input type="text" name="option1_textbox">
+        <input type="text" name="option1_textbox"><br>
         <label>
             <input type="radio" name="option" value="option2">選択肢2
         </label>
-        <input type="text" name="option2_textbox"><label>
+        <input type="text" name="option2_textbox"><br>
+        <label>
             <input type="radio" name="option" value="option1">選択肢3
         </label>
-        <input type="text" name="option3_textbox"><label>
+        <input type="text" name="option3_textbox"><br>
+        <label>
             <input type="radio" name="option" value="option1">選択肢4
         </label>
-        <input type="text" name="option4_textbox">
+        <input type="text" name="option4_textbox"><br>
     <p></p>
     <p></p>
-    <button wicket:id="submit">ヒント自動生成</button>
+    <!--<button wicket:id="submit">ヒント自動生成</button>-->
+    <button>ヒント自動生成</button>
 
 
     <p>ページ遷移リンク</p>
