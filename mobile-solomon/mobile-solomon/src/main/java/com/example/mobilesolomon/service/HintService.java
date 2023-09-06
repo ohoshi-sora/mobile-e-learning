@@ -1,7 +1,7 @@
 package com.example.mobilesolomon.service;
 
-import com.example.mobilesolomon.data.HintApiReader;
-import com.example.mobilesolomon.data.IHintLogRepository;
+import com.example.mobilesolomon.data.ApiReader;
+import com.example.mobilesolomon.data.ILogRepository;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HintService implements IHintService {
 
-    private IHintLogRepository hintLogRepos;
+    private ILogRepository hintLogRepos;
 
     private String API_KEY;
     private String prompt; // ChatGPTに送るプロンプト
@@ -20,14 +20,14 @@ public class HintService implements IHintService {
 
 //　　ここでapiをたたく、レスポンスをうけとる
     @Autowired
-    public HintService(IHintLogRepository hintLogRepos) {
+    public HintService(ILogRepository hintLogRepos) {
         this.hintLogRepos = hintLogRepos;
     }
 
     @Override
     public void register(int num, String question, String answer) {
         //　APIキーを取得している
-        HintApiReader apiReader = new HintApiReader();
+        ApiReader apiReader = new ApiReader();
         String API_KEY = apiReader.getAPI_KEY();
 
         // ライブラリを利用して、インスタンスを生成
