@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class QuestionService {
 
-
-
     private ILogRepository LogRepos;     // データベースを引っ張ってくる
     private String API_KEY;     // APIキー
     private String prompt;      // GPTに送信するprompt
@@ -26,6 +24,7 @@ public class QuestionService {
         this.LogRepos = logRepos;
     }
 
+    // 全体のメソッド
     public void probGene (int num, String question, String answer) {
 
         // APIキーの取得
@@ -34,6 +33,27 @@ public class QuestionService {
 
         // ライブラリを利用して、インスタンスを生成
         final var service = new OpenAiService(API_KEY);
+
+        // プロンプト関連をかく
+
+
+        // APIを叩いているところ
+        final var completionRequest = CompletionRequest.builder()
+                .model("text-davinci-003")
+                .prompt(prompt)
+                .maxTokens(256)
+                .build();
+        final var completionResult = service.createCompletion(completionRequest);
+        final var choiceList = completionResult.getChoices();
+
+        // APIを叩いて帰ってきた文章を出力するところ
+        for (final CompletionChoice choice : choiceList) {
+            System.out.println("chatGPTが作った問題と解答、ヒント：" + choice.getText());
+            ReGPT = choice.getText();
+        }
+
+        // データベースに出力されたものを収納
+        // 複数の問題が出てきた場合の処理をどうするのか
 
 
     }
