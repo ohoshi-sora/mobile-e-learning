@@ -20,12 +20,20 @@
     </form>
     <h2>操作3</h2>
     <p>正答を選択してください</p>
-        <select>
-            <option value="a">ア</option>
-            <option value="i">イ</option>
-            <option value="u">ウ</option>
-            <option value="e">エ</option>
-        </select>
+        <label>
+            <input type="radio" name="option" value="option1">選択肢1
+        </label>
+        <input type="text" name="option1_textbox">
+        <label>
+            <input type="radio" name="option" value="option2">選択肢2
+        </label>
+        <input type="text" name="option2_textbox"><label>
+            <input type="radio" name="option" value="option1">選択肢3
+        </label>
+        <input type="text" name="option3_textbox"><label>
+            <input type="radio" name="option" value="option1">選択肢4
+        </label>
+        <input type="text" name="option4_textbox">
     <p></p>
     <p></p>
     <button wicket:id="submit">ヒント自動生成</button>

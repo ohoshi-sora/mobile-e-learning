@@ -54,8 +54,8 @@ public class HintMakerPage extends WebPage {
 
 
 
-        form.add(new SubmitButton("submit"));
-        add(form);
+        //form.add(new SubmitButton("submit"));
+        //add(form);
 
     }
 
