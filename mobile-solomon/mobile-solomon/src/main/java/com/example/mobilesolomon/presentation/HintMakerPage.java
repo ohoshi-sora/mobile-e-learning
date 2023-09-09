@@ -4,6 +4,7 @@ import com.example.mobilesolomon.service.HintService;
 import com.example.mobilesolomon.service.IHintService;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -11,7 +12,9 @@ import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.annotation.mount.MountPath;
 
@@ -40,6 +43,12 @@ public class HintMakerPage extends WebPage {
         //TextArea<String> textField = new TextArea<>("question");
         //form.add(textField);
 
+        Form<Void> form = new Form<>("form");
+        add(form);
+
+        TextArea<String> question = new TextArea<>("question", Model.of(""));
+        form.add(question);
+
 //        DropDownChoice<String> dropdown = new DropDownChoice<>("select", new PropertyModel<>(this, "select"), Arrays.asList("a", "i", "u", "e"));
 //        add(dropdown);
 //        dropdown.add(new AjaxFormComponentUpdatingBehavior("change") {
@@ -52,10 +61,28 @@ public class HintMakerPage extends WebPage {
 //            }
 //        });
 
+        //ボタンを作成
+        AjaxButton button = new AjaxButton("form:submit") {
+            @Override
+            protected void onSubmit(AjaxRequestTarget target){
+                //ボタンがクリックされた時の処理
 
+                //入力された情報を取得
+                ////gptに聞いて帰ってきたから一応入力してるが、後で変更します
+                //String userInput = inputField.getModelObject();
+                //System.out.println("入力された情報:"+userInput);
 
-        //form.add(new SubmitButton("submit"));
-        //add(form);
+                //画面遷移を行うためのパラメータを設定
+                //PageParameters parameters = new PageParameters();
+                //parameters.add("inputValue",userInput);
+
+                //別ページに遷移
+                setResponsePage(HintPreviewPage.class);
+
+            }
+        };
+        form.add(button);
+
 
     }
 

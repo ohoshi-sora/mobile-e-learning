@@ -4,14 +4,14 @@
     <title>ヒント作成ページ</title>
 </head>
 <body>
+
 <h1>ヒントを作成する</h1>
     <h2>操作1</h2><!--画面見やすくなるようにつけてみた-->
     <p>問題文と解答の選択肢を入力してください</p>
     <div>
-        <!--<form wicket:id="form">
-            <p><textarea wicket:id="question" cols="100" rows="20"></textarea></p>
-        </form>-->
-        <p><textarea cols="100" rows="20"></textarea></p>
+        <form wicket:id="form">
+            <textarea wicket:id="question" cols="100" rows="20"></textarea>
+        </form>
     </div>
     <h2>操作2</h2>
     <form action="#" method="post" enctype="multipart/form-data">
@@ -21,30 +21,17 @@
     </form>
     <h2>操作3</h2>
     <p>正答を選択してください</p>
-        <label>
-            <input type="radio" name="option" value="option1">選択肢1
-        </label>
-        <input type="text" name="option1_textbox"><br>
-        <label>
-            <input type="radio" name="option" value="option2">選択肢2
-        </label>
-        <input type="text" name="option2_textbox"><br>
-        <label>
-            <input type="radio" name="option" value="option1">選択肢3
-        </label>
-        <input type="text" name="option3_textbox"><br>
-        <label>
-            <input type="radio" name="option" value="option1">選択肢4
-        </label>
-        <input type="text" name="option4_textbox"><br>
+        <input type="radio" name="option" value="option1">ア<br>
+        <input type="radio" name="option" value="option2">イ<br>
+        <input type="radio" name="option" value="option3">ウ<br>
+        <input type="radio" name="option" value="option4">エ<br>
     <p></p>
     <p></p>
-    <!--<button wicket:id="submit">ヒント自動生成</button>-->
-    <button>ヒント自動生成</button>
+    <button wicket:id="submit">ヒント自動生成</button>
 
+<p>ページ遷移リンク</p>
+<div><a href="#" wicket:id="toHintPreview">ヒントプレビューの画面へ(確認用)</a></div>
+<div><a href="#" wicket:id="toHome">Homeに戻る</a></div>
 
-    <p>ページ遷移リンク</p>
-    <div><a href="#" wicket:id="toHintPreview">ヒントプレビューの画面へ(確認用)</a></div>
-    <div><a href="#" wicket:id="toHome">Homeに戻る</a></div>
 </body>
 </html>
