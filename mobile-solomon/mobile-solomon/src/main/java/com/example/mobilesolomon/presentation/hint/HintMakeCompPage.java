@@ -1,5 +1,6 @@
-package com.example.mobilesolomon.presentation;
+package com.example.mobilesolomon.presentation.hint;
 
+import com.example.mobilesolomon.presentation.HomePage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.wicketstuff.annotation.mount.MountPath;
 import org.apache.wicket.markup.html.WebPage;

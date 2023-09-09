@@ -1,5 +1,6 @@
 package com.example.mobilesolomon.presentation;
 
+import com.example.mobilesolomon.presentation.hint.HintMakerPage;
 import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
 import org.apache.wicket.markup.html.WebPage;
 import org.wicketstuff.annotation.mount.MountPath;

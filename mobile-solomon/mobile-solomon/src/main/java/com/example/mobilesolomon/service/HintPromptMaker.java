@@ -1,6 +1,6 @@
 package com.example.mobilesolomon.service;
 
-import com.example.mobilesolomon.presentation.HintMakerPage;
+import com.example.mobilesolomon.presentation.hint.HintMakerPage;
 
 public class HintPromptMaker {
 
