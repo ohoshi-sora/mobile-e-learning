@@ -24,6 +24,8 @@ public class HintMakerPage extends WebPage {
     @SpringBean
     private IHintService hintService;
 
+
+
     /**入力された問題文**/
     private String question;
     /**選択された答えアイウエ**/
@@ -80,7 +82,8 @@ public class HintMakerPage extends WebPage {
             // 選択された答えを取得
 
             // データベースへ登録
-            //hintService.register(1,question,"15");
+
+            hintService.register(1,question,"15");
 
             // HintPreviewPageに移動
             setResponsePage(HintPreviewPage.class);

@@ -58,10 +58,6 @@ public class HintService implements IHintService {
         System.out.println("記録行数：" + n);
     }
 
-//    @Override
-//    public String getHint_madeByGPT() {
-//        return hint_madeByGPT;
-//    }
 
     // debug用　APIキーがゲッターで呼び出せることを確認できた
 //    public static void main(String[] args) {

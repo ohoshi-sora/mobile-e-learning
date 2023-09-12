@@ -27,7 +27,7 @@ public class LogRepository implements ILogRepository {
         var sql = "select max(NUM) from question";
         var n = jdbcTemplate.queryForObject(sql,Integer.class);
         if(n == null) {
-            return 1;
+            return 0;
         }else {
             return n;
         }
