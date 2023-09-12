@@ -7,29 +7,27 @@
 
 <h1>ヒントを作成する</h1>
     <h2>操作1</h2><!--画面見やすくなるようにつけてみた-->
-    <p>問題文と解答の選択肢を入力してください</p>
-    <div>
-        <form wicket:id="form">
-            <textarea wicket:id="question" cols="100" rows="20"></textarea>
-        </form>
-    </div>
-    <h2>操作2</h2>
-    <form action="#" method="post" enctype="multipart/form-data">
-        <label for="file">画像を選択:</label>
-        <input type="file" name="file" id="file"><br>
-        <input type="submit" value="アップロード">
+    <p>問題文を入力してください</p>
+    <form wicket:id="hintForm">
+        <textarea wicket:id="question" cols="100" rows="20"></textarea>
+        <h2>操作2</h2>
+        <p>回答の選択肢を入力してください</p>
+        <h2>操作3</h2>
+        <p>正答を選択してください</p>
+            <RaidioChoice wicket:id="answer" class="radio-choice">
+            <input type="radio"  name="option" value="ア"> ア <br>
+            <input type="radio"  name="option" value="イ"> イ <br>
+            <input type="radio"  name="option" value="ウ"> ウ <br>
+            <input type="radio"  name="option" value="エ"> エ <br>
+            </RaidioChoice>
+        <br>
+        <br>
+        <p></p>
+        <p></p>
+        <button wicket:id="submit">ヒント自動生成</button>
     </form>
-    <h2>操作3</h2>
-    <p>正答を選択してください</p>
-        <input type="radio" name="option" value="option1">ア<br>
-        <input type="radio" name="option" value="option2">イ<br>
-        <input type="radio" name="option" value="option3">ウ<br>
-        <input type="radio" name="option" value="option4">エ<br>
-    <p></p>
-    <p></p>
-    <button wicket:id="submit">ヒント自動生成</button>
-
-<p>ページ遷移リンク</p>
+<p></p>
+<h3>ページ遷移リンク</h3>
 <div><a href="#" wicket:id="toHintPreview">ヒントプレビューの画面へ(確認用)</a></div>
 <div><a href="#" wicket:id="toHome">Homeに戻る</a></div>
 
