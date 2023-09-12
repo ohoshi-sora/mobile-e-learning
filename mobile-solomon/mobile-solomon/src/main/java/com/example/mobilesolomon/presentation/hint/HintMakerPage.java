@@ -41,40 +41,6 @@ public class HintMakerPage extends WebPage {
         TextArea<String> question = new TextArea<>("question", Model.of(""));
         form.add(question);
 
-//        DropDownChoice<String> dropdown = new DropDownChoice<>("select", new PropertyModel<>(this, "select"), Arrays.asList("a", "i", "u", "e"));
-//        add(dropdown);
-//        dropdown.add(new AjaxFormComponentUpdatingBehavior("change") {
-//            @Override
-//            protected void onUpdate(AjaxRequestTarget target) {
-//                // 選択された値をここで処理
-//                String selectedValue = ;
-//                // 選択された値を使用して必要な処理を実行
-//                System.out.println(selectedValue);
-//            }
-//        });
-
-        //ボタンを作成
-        AjaxButton button = new AjaxButton("form:submit") {
-            @Override
-            protected void onSubmit(AjaxRequestTarget target){
-                //ボタンがクリックされた時の処理
-
-                //入力された情報を取得
-                ////gptに聞いて帰ってきたから一応入力してるが、後で変更します
-                //String userInput = inputField.getModelObject();
-                //System.out.println("入力された情報:"+userInput);
-
-                //画面遷移を行うためのパラメータを設定
-                //PageParameters parameters = new PageParameters();
-                //parameters.add("inputValue",userInput);
-
-                //別ページに遷移
-                setResponsePage(HintPreviewPage.class);
-
-            }
-        };
-        form.add(button);
-
 
     }
 
