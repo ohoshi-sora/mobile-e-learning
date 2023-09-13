@@ -14,7 +14,10 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.annotation.mount.MountPath;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 // 問題や解答を入力して、ボタンを押すとヒントを製作できる
 
@@ -24,12 +27,17 @@ public class HintMakerPage extends WebPage {
     @SpringBean
     private IHintService hintService;
 
-
-
     /**入力された問題文**/
     private String question;
+
     /**選択された答えアイウエ**/
     private String answer;
+
+    /**選択肢**/
+    private String option1;
+    private String option2;
+    private String option3;
+    private String option4;
 
     public HintMakerPage() {
         var toHintPreview = new BookmarkablePageLink<>("toHintPreview", HintPreviewPage.class);
@@ -38,22 +46,29 @@ public class HintMakerPage extends WebPage {
         add(toHomeLink);
 
         try {
-
+            // ヒント入力フォーム
             Form<HintMakerPage> form = new Form<>("hintForm", new CompoundPropertyModel<>(this));
+            // 問題
             TextArea<String> textField = new TextArea<>("question");
             form.add(textField);
-
-            RadioChoice<String> radioChoice = new RadioChoice<>("answer", Model.of("ア"),
-                    List.of("ア", "イ", "ウ", "エ"));
+            // 選択肢
+            TextArea<String> t1 = new TextArea<>("option1");
+            form.add(t1);
+            TextArea<String> t2 = new TextArea<>("option2");
+            form.add(t2);
+            TextArea<String> t3 = new TextArea<>("option3");
+            form.add(t3);
+            TextArea<String> t4 = new TextArea<>("option4");
+            form.add(t4);
+            // 解答
+            List ANS = Arrays.asList(new String[] {"ア", "イ", "ウ", "エ"});
+            RadioChoice radioChoice = new RadioChoice("answer", ANS);
             form.add(radioChoice);
-
-            // SubmitButtonをフォームに追加
+            // 自動生成ボタン
             SubmitButton submitButton = new SubmitButton("submit");
             form.add(submitButton);
 
             add(form);
-
-
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -76,14 +91,21 @@ public class HintMakerPage extends WebPage {
         @Override
         public void onSubmit() {
             super.onSubmit();
-            // コンソールに出力　入力された文章いじれるか確認
-            System.out.println("入力された文章（問題）:" + question);
+            // 入力された問題文
+            System.out.println("【DEBUG】問題 ：  " + question);
 
-            // 選択された答えを取得
+            // 選択肢
+            System.out.println("【DEBUG】選択肢 ア ： " + option1);
+            System.out.println("【DEBUG】選択肢 イ ： " + option2);
+            System.out.println("【DEBUG】選択肢 ウ ： " + option3);
+            System.out.println("【DEBUG】選択肢 エ ： " + option4);
+
+            // 選択された答え
+            System.out.println("【DEBUG】解答 ： " + answer);
+
 
             // データベースへ登録
-
-            hintService.register(1,question,"15");
+            //hintService.register(1,question,"15");
 
             // HintPreviewPageに移動
             setResponsePage(HintPreviewPage.class);
