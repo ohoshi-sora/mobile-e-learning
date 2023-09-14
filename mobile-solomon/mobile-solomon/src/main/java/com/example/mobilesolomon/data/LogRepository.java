@@ -17,14 +17,14 @@ public class LogRepository implements ILogRepository {
     }
 
     @Override
-    public int insert(int num, String question, String answer, String hint) {
-        var sql = "insert into question values (?, ?, ?, ?)";
-        var n = jdbcTemplate.update(sql, num, question, answer, hint);
+    public int insert(int num, String question, String opt1, String opt2, String opt3, String opt4, String answer, String hint) {
+        var sql = "insert into hint values (?, ?, ?, ?, ?, ?, ?, ?)";
+        var n = jdbcTemplate.update(sql, num, question, opt1, opt2, opt3, opt4, answer, hint);
         return n;
     }
     @Override
     public int selectMaxNum() {
-        var sql = "select max(NUM) from question";
+        var sql = "select max(NUM) from hint";
         var n = jdbcTemplate.queryForObject(sql,Integer.class);
         if(n == null) {
             return 0;
@@ -35,7 +35,7 @@ public class LogRepository implements ILogRepository {
 
     @Override
     public int delete(int num) {
-        String sql = "DELETE FROM question WHERE NUM = ?";
+        String sql = "DELETE FROM hint WHERE NUM = ?";
         int deletedRows = jdbcTemplate.update(sql, num);
         return deletedRows;
     }
@@ -49,9 +49,5 @@ public class LogRepository implements ILogRepository {
         return ret;
     }
 
-//    @Override
-//    public String selectQuestion(int n) {
-//        var sql = "SELECT FROM question ";
-//    }つくりかけ　メモ　questionテーブルのカラムにquestionあるのきもい
 
 }

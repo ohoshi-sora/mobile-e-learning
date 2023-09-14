@@ -15,6 +15,8 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import java.lang.reflect.Array;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -74,7 +76,6 @@ public class HintMakerPage extends WebPage {
         }
 
     }
-
     @Override
     protected void onConfigure() {
         super.onConfigure();
@@ -82,7 +83,6 @@ public class HintMakerPage extends WebPage {
         setVersioned(false);
 
     }
-
     private class SubmitButton extends org.apache.wicket.markup.html.form.Button {
         public SubmitButton (String id) {
             super(id);
@@ -103,9 +103,8 @@ public class HintMakerPage extends WebPage {
             // 選択された答え
             System.out.println("【DEBUG】解答 ： " + answer);
 
-
             // データベースへ登録
-            //hintService.register(1,question,"15");
+            hintService.register(question, option1, option2, option3, option4, answer);
 
             // HintPreviewPageに移動
             setResponsePage(HintPreviewPage.class);
@@ -117,5 +116,24 @@ public class HintMakerPage extends WebPage {
         return question;
     }
 
+    public String getAnswer() {
+        return answer;
+    }
+
+    public String getOption1() {
+        return option1;
+    }
+
+    public String getOption2() {
+        return option2;
+    }
+
+    public String getOption3() {
+        return option3;
+    }
+
+    public String getOption4() {
+        return option4;
+    }
 }
 
