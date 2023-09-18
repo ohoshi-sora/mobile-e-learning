@@ -8,9 +8,6 @@ import com.theokanning.openai.completion.CompletionRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 @Service
 public class HintService implements IHintService {
 
@@ -70,6 +67,12 @@ public class HintService implements IHintService {
         // データベースに保存
         int n = hintLogRepos.insert(number, opt1, opt2, opt3, opt4, question, answer, hint_madeByGPT);
         System.out.println("【DEBUG】記録できました");
+    }
+
+    @Override
+    public String selectHint() {
+        int num = hintLogRepos.selectMaxNum();
+        return hintLogRepos.selectHint(num);
     }
 
 

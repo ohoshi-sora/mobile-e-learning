@@ -2,7 +2,20 @@
 <head></head>
 <body>
 <p>ヒントがプレビューされることになるページだよ</p>
-<span wicket:id="test">miss</span>
+<br>
+<span wicket:id="question"></span>
+<span wicket:id="option1"></span>
+<span wicket:id="option2"></span>
+<span wicket:id="option3"></span>
+<span wicket:id="option4"></span>
+<span wicket:id="answer"></span>
+
+
+<form wicket:id="textForm">
+    <textarea wicket:id="textArea" cols="100" rows="20">初期値をここに表示</textarea>
+    <button type="submit">保存</button>
+</form>
+
 <div>
     <button onclick="location.href='#!'" wicket:id="toHintMaker">一つ前の画面に戻る</button>
 </div>

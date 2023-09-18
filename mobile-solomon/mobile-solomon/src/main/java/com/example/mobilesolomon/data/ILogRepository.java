@@ -43,6 +43,14 @@ public interface ILogRepository {
      */
     //public String selectQuestion(int n);
 
+    /**
+     * ---[通し番号から、カラム（hint）を得る]---
+     *
+     * @param n 通し番号
+     * @return hint ヒント String
+     */
+    public String selectHint(int n);
+
 
 }
 

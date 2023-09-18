@@ -49,5 +49,13 @@ public class LogRepository implements ILogRepository {
         return ret;
     }
 
+    @Override
+    public String selectHint(int n) {
+        String ret = "";
+        var sql = "SELECT HINT FROM HINT WHERE NUM = ?";
+        ret = jdbcTemplate.queryForObject(sql, String.class, n);
+        return ret;
+    }
+
 
 }
