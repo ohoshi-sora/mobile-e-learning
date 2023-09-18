@@ -5,6 +5,7 @@ import com.example.mobilesolomon.data.LogRepository;
 import com.example.mobilesolomon.presentation.HomePage;
 import com.example.mobilesolomon.presentation.hint.HintMakeCompPage;
 import com.example.mobilesolomon.presentation.hint.HintMakerPage;
+import com.example.mobilesolomon.service.HintPromptMaker;
 import com.example.mobilesolomon.service.HintService;
 import com.example.mobilesolomon.service.IHintService;
 import org.apache.wicket.markup.html.WebPage;
@@ -25,6 +26,9 @@ public class HintPreviewPage extends WebPage {
     @SpringBean
     private IHintService hintService;
 
+    // ヒント修正
+    private String hint;
+
     public HintPreviewPage() {
         // 問題と選択肢、解答
         add(new Label("question", "問題：" + hintService.getQ()));
@@ -38,18 +42,50 @@ public class HintPreviewPage extends WebPage {
 
         // ヒント
         Form<Void> form = new Form<>("textForm");
-        TextArea<String> textArea = new TextArea<>("textArea", Model.of(hintService.getHint()));
+        TextArea<String> textArea = new TextArea<>("hint", Model.of(hintService.getHint()));
         form.add(textArea);
+        // 自動生成ボタン
+        SubmitButton submitButton = new SubmitButton("submit");
+        form.add(submitButton);
         add(form);
 
 
         var toHintMakerLink = new BookmarkablePageLink<>("toHintMaker", HintMakerPage.class);
         add(toHintMakerLink);
-        var toHintMakeCompLink = new BookmarkablePageLink<>("toHintMakeComp", HintMakeCompPage.class);
-        add(toHintMakeCompLink);
+
         var toHomeLink = new BookmarkablePageLink<>("toHome", HomePage.class);
         add(toHomeLink);
 
     }
 
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
+        // ページの再描画を有効化
+        setVersioned(false);
+
+    }
+
+    private class SubmitButton extends org.apache.wicket.markup.html.form.Button {
+        public SubmitButton(String id) {
+            super(id);
+        }
+
+        @Override
+        public void onSubmit() {
+            super.onSubmit();
+
+            // 修正されたヒント
+            System.out.println("【DEBUG】修正後ヒント ： " + hint);
+
+            // データベースへ更新
+            if (hintService.updateHint(hint)) {
+                System.out.println("【DEBUG】正常に更新できました。");
+            }
+
+            // HintMakeCompPageに移動
+            setResponsePage(HintMakeCompPage.class);
+
+        }
+    }
 }

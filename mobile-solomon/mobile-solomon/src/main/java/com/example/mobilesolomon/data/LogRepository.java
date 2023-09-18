@@ -43,7 +43,7 @@ public class LogRepository implements ILogRepository {
     @Override
     public boolean update(String newHint, int n) {
         boolean ret = false; // 初期化
-        var sql = "UPDATE SET HINT = ? WHERE NUM = ?";
+        var sql = "UPDATE HINT SET HINT = ? WHERE NUM = ?";
         var updatedRow =jdbcTemplate.update(sql,newHint, n);
         if(updatedRow>0) ret = true;
         return ret;

@@ -11,6 +11,7 @@ public interface IHintService {
     public String getOpt3();
     public String getOpt4();
     public String getAns();
+    public boolean updateHint(String newHint);
 
 
 }

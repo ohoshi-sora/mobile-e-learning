@@ -15,15 +15,12 @@
 
 
 <form wicket:id="textForm">
-    <textarea wicket:id="textArea" cols="100" rows="20">初期値をここに表示</textarea>
-    <button type="submit">保存</button>
+    <textarea wicket:id="hint" cols="100" rows="20">初期値をここに表示</textarea>
+    <button wicket:id="submit">内容確定</button>
 </form>
 
 <div>
     <button onclick="location.href='#!'" wicket:id="toHintMaker">一つ前の画面に戻る</button>
-</div>
-<div>
-    <button onclick="location.href='#!'" wicket:id="toHintMakeComp">内容確定</button>
 </div>
 <div>
     <button onclick="location.href='#!'" wicket:id="toHome">いったんHomeに戻る</button>

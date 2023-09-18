@@ -65,7 +65,7 @@ public class HintService implements IHintService {
 
         // データベースに保存
         int n = hintLogRepos.insert(number, question, opt1, opt2, opt3, opt4, answer, hint_madeByGPT);
-        System.out.println("【DEBUG】記録できました");
+        System.out.println("【DEBUG】正常に記録できました");
     }
 
     // ここからしたプレビュー用
@@ -109,6 +109,12 @@ public class HintService implements IHintService {
     public String getAns(){
         int n = hintLogRepos.selectMaxNum();
         return hintLogRepos.selectAns(n);
+    }
+    // ヒント更新（修正）
+    @Override
+    public boolean updateHint(String newHint) {
+        int n = hintLogRepos.selectMaxNum();
+        return hintLogRepos.update(newHint ,n);
     }
 
     // debug用　APIキーがゲッターで呼び出せることを確認できた
