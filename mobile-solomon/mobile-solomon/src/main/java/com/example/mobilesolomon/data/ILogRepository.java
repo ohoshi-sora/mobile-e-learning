@@ -41,7 +41,7 @@ public interface ILogRepository {
      * @param n 通し番号
      * @return question 問題文
      */
-    //public String selectQuestion(int n);
+    public String selectQ(int n);
 
     /**
      * ---[通し番号から、カラム（hint）を得る]---
@@ -50,6 +50,46 @@ public interface ILogRepository {
      * @return hint ヒント String
      */
     public String selectHint(int n);
+
+    /**
+     * ---[通し番号から、カラム（option1）を得る]---
+     *
+     * @param n 通し番号
+     * @return option1 String
+     */
+    public String selectOpt1(int n);
+
+    /**
+     * ---[通し番号から、カラム（option2）を得る]---
+     *
+     * @param n 通し番号
+     * @return option2 String
+     */
+    public String selectOpt2(int n);
+
+    /**
+     * ---[通し番号から、カラム（option3）を得る]---
+     *
+     * @param n 通し番号
+     * @return option3 String
+     */
+    public String selectOpt3(int n);
+
+    /**
+     * ---[通し番号から、カラム（option4）を得る]---
+     *
+     * @param n 通し番号
+     * @return option4 String
+     */
+    public String selectOpt4(int n);
+
+    /**
+     * ---[通し番号から、カラム（answer）を得る]---
+     *
+     * @param n 通し番号
+     * @return answer String
+     */
+    public String selectAns(int n);
 
 
 }

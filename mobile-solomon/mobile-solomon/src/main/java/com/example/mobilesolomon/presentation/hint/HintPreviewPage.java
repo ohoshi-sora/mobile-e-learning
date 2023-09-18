@@ -27,18 +27,18 @@ public class HintPreviewPage extends WebPage {
 
     public HintPreviewPage() {
         // 問題と選択肢、解答
-        add(new Label("question", new HintMakerPage().getQuestion()));
-        add(new Label("option1", new HintMakerPage().getOption1()));
-        add(new Label("option2", new HintMakerPage().getOption2()));
-        add(new Label("option3", new HintMakerPage().getOption3()));
-        add(new Label("option4", new HintMakerPage().getOption4()));
-        add(new Label("answer", new HintMakerPage().getOption2()));
+        add(new Label("question", "問題：" + hintService.getQ()));
+        add(new Label("option1", "ア：" +hintService.getOpt1()));
+        add(new Label("option2", "イ：" + hintService.getOpt2()));
+        add(new Label("option3", "ウ：" + hintService.getOpt3()));
+        add(new Label("option4", "エ：" + hintService.getOpt4()));
+        add(new Label("answer", "解答：" + hintService.getAns()));
 
 
 
         // ヒント
         Form<Void> form = new Form<>("textForm");
-        TextArea<String> textArea = new TextArea<>("textArea", Model.of(hintService.selectHint()));
+        TextArea<String> textArea = new TextArea<>("textArea", Model.of(hintService.getHint()));
         form.add(textArea);
         add(form);
 

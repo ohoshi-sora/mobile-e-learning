@@ -1,6 +1,7 @@
 package com.example.mobilesolomon.presentation.hint;
 
 import com.example.mobilesolomon.presentation.HomePage;
+import com.example.mobilesolomon.service.HintPromptMaker;
 import com.example.mobilesolomon.service.IHintService;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
@@ -103,8 +104,9 @@ public class HintMakerPage extends WebPage {
             // 選択された答え
             System.out.println("【DEBUG】解答 ： " + answer);
 
+            HintPromptMaker hintPromptMaker = new HintPromptMaker(question, option1, option2, option3, option4, answer);
             // データベースへ登録
-            hintService.register(question, option1, option2, option3, option4, answer);
+            hintService.register(question, option1, option2, option3, option4, answer, hintPromptMaker.getPrompt());
 
             // HintPreviewPageに移動
             setResponsePage(HintPreviewPage.class);
@@ -120,20 +122,6 @@ public class HintMakerPage extends WebPage {
         return answer;
     }
 
-    public String getOption1() {
-        return option1;
-    }
 
-    public String getOption2() {
-        return option2;
-    }
-
-    public String getOption3() {
-        return option3;
-    }
-
-    public String getOption4() {
-        return option4;
-    }
 }
 

@@ -57,5 +57,52 @@ public class LogRepository implements ILogRepository {
         return ret;
     }
 
+    @Override
+    public String selectQ(int n) {
+        String ret = "";
+        var sql = "SELECT QUESTION FROM HINT WHERE NUM = ?";
+        ret = jdbcTemplate.queryForObject(sql, String.class, n);
+        return ret;
+    }
+
+    @Override
+    public String selectOpt1(int n) {
+        String ret = "";
+        var sql = "SELECT OPTION1 FROM HINT WHERE NUM = ?";
+        ret = jdbcTemplate.queryForObject(sql, String.class, n);
+        return ret;
+    }
+
+    @Override
+    public String selectOpt2(int n) {
+        String ret = "";
+        var sql = "SELECT OPTION2 FROM HINT WHERE NUM = ?";
+        ret = jdbcTemplate.queryForObject(sql, String.class, n);
+        return ret;
+    }
+
+    @Override
+    public String selectOpt3(int n) {
+        String ret = "";
+        var sql = "SELECT OPTION3 FROM HINT WHERE NUM = ?";
+        ret = jdbcTemplate.queryForObject(sql, String.class, n);
+        return ret;
+    }
+
+    @Override
+    public String selectOpt4(int n) {
+        String ret = "";
+        var sql = "SELECT OPTION4 FROM HINT WHERE NUM = ?";
+        ret = jdbcTemplate.queryForObject(sql, String.class, n);
+        return ret;
+    }
+
+    @Override
+    public String selectAns(int n) {
+        String ret = "";
+        var sql = "SELECT ANSWER FROM HINT WHERE NUM = ?";
+        ret = jdbcTemplate.queryForObject(sql, String.class, n);
+        return ret;
+    }
 
 }

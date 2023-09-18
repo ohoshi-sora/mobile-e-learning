@@ -25,7 +25,7 @@ public class HintService implements IHintService {
     }
 
     @Override
-    public void register(String question, String opt1, String opt2, String opt3, String opt4, String answer) {
+    public void register(String question, String opt1, String opt2, String opt3, String opt4, String answer, String p) {
         // 現在日時を取得
         //LocalDateTime nowDate = LocalDateTime.now();
         // 表示形式を指定
@@ -45,8 +45,7 @@ public class HintService implements IHintService {
         final var service = new OpenAiService(API_KEY);
 
         // プロンプト
-        HintPromptMaker promptMaker = new HintPromptMaker();
-        this.prompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever.\nHuman: " + promptMaker.getPrompt()
+        this.prompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever.\nHuman: " + p
                 + "\nAI: ";
 
         // ここでリクエストをしている　生成された選択肢をListに格納している。
@@ -65,16 +64,52 @@ public class HintService implements IHintService {
         }
 
         // データベースに保存
-        int n = hintLogRepos.insert(number, opt1, opt2, opt3, opt4, question, answer, hint_madeByGPT);
+        int n = hintLogRepos.insert(number, question, opt1, opt2, opt3, opt4, answer, hint_madeByGPT);
         System.out.println("【DEBUG】記録できました");
     }
 
+    // ここからしたプレビュー用
+    // データベースからヒント取ってくる（プレビュー用）
     @Override
-    public String selectHint() {
+    public String getHint() {
         int num = hintLogRepos.selectMaxNum();
         return hintLogRepos.selectHint(num);
     }
 
+    @Override
+    public String getQ(){
+        int n = hintLogRepos.selectMaxNum();
+        return hintLogRepos.selectQ(n);
+    }
+
+    @Override
+    public String getOpt1(){
+        int n = hintLogRepos.selectMaxNum();
+        return hintLogRepos.selectOpt1(n);
+    }
+
+    @Override
+    public String getOpt2(){
+        int n = hintLogRepos.selectMaxNum();
+        return hintLogRepos.selectOpt2(n);
+    }
+
+    @Override
+    public String getOpt3(){
+        int n = hintLogRepos.selectMaxNum();
+        return hintLogRepos.selectOpt3(n);
+    }
+    @Override
+    public String getOpt4(){
+        int n = hintLogRepos.selectMaxNum();
+        return hintLogRepos.selectOpt4(n);
+    }
+
+    @Override
+    public String getAns(){
+        int n = hintLogRepos.selectMaxNum();
+        return hintLogRepos.selectAns(n);
+    }
 
     // debug用　APIキーがゲッターで呼び出せることを確認できた
 //    public static void main(String[] args) {
