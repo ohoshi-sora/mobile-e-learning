@@ -81,7 +81,7 @@ public class HintPreviewPage extends WebPage {
             super.onSubmit();
 
             // 修正されたヒント
-            System.out.println("【DEBUG】修正後ヒント ： " + hint);
+            System.out.println("【DEBUG】修正後ヒント ： \n" + hint);
 
             // データベースへ更新
             if (hintService.updateHint(hint)) {
