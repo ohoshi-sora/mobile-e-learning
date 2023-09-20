@@ -59,7 +59,7 @@ public class HintService implements IHintService {
 
         // 出力
         for (final CompletionChoice choice : choiceList) {
-            System.out.println("【DEBUG】chatGPTが作ったヒント：" + choice.getText());
+            System.out.println("【DEBUG】chatGPTが作ったヒント： \n" + choice.getText());
             hint_madeByGPT = choice.getText();
         }
 
