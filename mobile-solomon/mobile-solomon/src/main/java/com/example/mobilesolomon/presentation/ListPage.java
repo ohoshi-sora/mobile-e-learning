@@ -48,7 +48,7 @@ public class ListPage extends WebPage {
 
     // 実際はDBからデータを取得することですが、今回はハードコーディングでデータを設定しました。
     private ArrayList<HintService> createDataList() {
-        ArrayList<HintService> list = new ArrayList<PersonBean>();
+        ArrayList<HintService> list = new ArrayList<HintService>();
         list.add(new PersonBean("10003248", "営業", "課長", "男"));
         list.add(new PersonBean("10003278", "開発", "社員", "女"));
         list.add(new PersonBean("10003348", "総務", "社員", "男"));
