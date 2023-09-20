@@ -44,6 +44,11 @@ public class HintPreviewPage extends WebPage {
         Form<Void> form = new Form<>("textForm");
         TextArea<String> textArea = new TextArea<>("hint", Model.of(hintService.getHint()));
         form.add(textArea);
+
+        // フォームからヒントの値を取得し、hint 変数に代入する
+        hint = textArea.getModelObject();
+
+
         // 自動生成ボタン
         SubmitButton submitButton = new SubmitButton("submit");
         form.add(submitButton);
