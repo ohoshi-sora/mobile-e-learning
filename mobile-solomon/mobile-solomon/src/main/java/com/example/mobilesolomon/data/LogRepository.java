@@ -1,8 +1,11 @@
 package com.example.mobilesolomon.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class LogRepository implements ILogRepository {
@@ -103,6 +106,13 @@ public class LogRepository implements ILogRepository {
         var sql = "SELECT ANSWER FROM HINT WHERE NUM = ?";
         ret = jdbcTemplate.queryForObject(sql, String.class, n);
         return ret;
+    }
+
+    @Override
+    public List<HintBean> selectAllHintTable(){
+        var sql = "SELECT * FROM HINT";
+        List<HintBean> hints = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(HintBean.class));
+        return hints;
     }
 
 }

@@ -1,5 +1,7 @@
 package com.example.mobilesolomon.data;
 
+import java.util.List;
+
 public interface ILogRepository {
     /**
      * ---[questionテーブルに記録する]---
@@ -92,5 +94,6 @@ public interface ILogRepository {
     public String selectAns(int n);
 
 
+    List<HintBean> selectAllHintTable();
 }
 
