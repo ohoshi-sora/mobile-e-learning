@@ -18,6 +18,7 @@ public class HintService implements IHintService {
     private String hint_madeByGPT; // ChatGPTから返ってきたヒント
 
 
+
 //　　ここでapiをたたく、レスポンスをうけとる
     @Autowired
     public HintService(ILogRepository hintLogRepos) {
