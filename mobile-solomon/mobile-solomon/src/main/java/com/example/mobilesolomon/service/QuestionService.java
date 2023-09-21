@@ -24,9 +24,22 @@ public class QuestionService implements IQuestionService{
         this.logRepos = logRepos;
     }
 
-    // 問題生成用register
+    // 問題をデータベースに登録する
     @Override
-    public void questionRegister(String question, String opt1, String opt2, String opt3, String opt4, String answer, String hint, String p) {
+    public void questionRegister(String question, String opt1, String opt2, String opt3, String opt4, String answer, String hint) {
+
+        // 通し番号(hintのデータベースと同じものを使う)
+        int number = logRepos.selectMaxNum() + 1;
+
+        // データベースに保存
+        int n = logRepos.insert(number, question, opt1, opt2, opt3, opt4, answer, hint);
+        System.out.println("【DEBUG】正常に記録できました");
+    }
+
+
+    // 仮
+    @Override
+    public void questionCopy(String question, String opt1, String opt2, String opt3, String opt4, String answer, String hint, String prom) {
 
         // 通し番号(hintのデータベースと同じものを使う)
         int number = logRepos.selectMaxNum() + 1;
@@ -39,7 +52,7 @@ public class QuestionService implements IQuestionService{
         final var service = new OpenAiService(API_KEY);
 
         // プロンプト
-        this.prompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever.\nHuman: " + p
+        this.prompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever.\nHuman: " + prom
                 + "\nAI: ";
 
         // ここでリクエストをしている　生成された選択肢をListに格納している。
@@ -61,6 +74,7 @@ public class QuestionService implements IQuestionService{
         int n = logRepos.insert(number, question, opt1, opt2, opt3, opt4, answer, hint);
         System.out.println("【DEBUG】正常に記録できました");
     }
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.mobilesolomon.presentation.question;
 
+import com.example.mobilesolomon.data.ILogRepository;
 import com.example.mobilesolomon.presentation.HomePage;
 import com.example.mobilesolomon.presentation.hint.HintPreviewPage;
 import com.example.mobilesolomon.service.IHintService;
@@ -13,6 +14,7 @@ import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import java.util.Arrays;
@@ -37,6 +39,7 @@ public class QuestionRegistrationPage extends WebPage {
     private String hint;
 
     public QuestionRegistrationPage() {
+
 
         // home画面に戻るためのリンク
         var toHomeLink = new BookmarkablePageLink<>("toHome", HomePage.class);
@@ -115,12 +118,11 @@ public class QuestionRegistrationPage extends WebPage {
             // ヒントを出力
             System.out.println("【DEBUG】ヒント ： " + hint);
 
-            QuestionPromptMaker questionPromptMaker = new QuestionPromptMaker(question, option1, option2, option3, option4, answer, hint);
             // データベースへ登録
-            questionService.questionRegister(question, option1, option2, option3, option4, answer, hint, questionPromptMaker.getPrompt());
+            questionService.questionRegister(question, option1, option2, option3, option4, answer, hint);
 
-            // HintPreviewPageに移動
-            setResponsePage(HintPreviewPage.class);
+            // QuestionRegistrationCompPageに移動
+            setResponsePage(QuestionRegistrationCompPage.class);
 
         }
     }
