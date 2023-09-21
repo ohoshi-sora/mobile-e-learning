@@ -15,6 +15,8 @@ public class HomePage extends WebPage {
         add(toHintMakerLink);
         var toQuestionRegistration = new BookmarkablePageLink<>("toQuestionRegistration", QuestionRegistrationPage.class);
         add(toQuestionRegistration);
+        var toListPage = new BookmarkablePageLink<>("toListPage", ListPage.class);
+        add(toListPage);
     }
 
 }
