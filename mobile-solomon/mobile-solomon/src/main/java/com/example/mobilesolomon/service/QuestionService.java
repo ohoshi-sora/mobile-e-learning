@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 // 問題と解答、ヒントを入力したら似たような問題を自動生成してくれるシステム
 @Service
-public class QuestionService {
+public class QuestionService implements IQuestionService{
 
-    private ILogRepository LogRepos;     // データベースを引っ張ってくる
+    private ILogRepository logRepos;     // データベースを引っ張ってくる
     private String API_KEY;     // APIキー
     private String prompt;      // GPTに送信するprompt
     private String ReGPT;       // GPTから帰ってきたもの
@@ -21,23 +21,28 @@ public class QuestionService {
     // 問題文と解答、ヒントをデータベースから引っ張り出す
     @Autowired
     public QuestionService(ILogRepository logRepos) {
-        this.LogRepos = logRepos;
+        this.logRepos = logRepos;
     }
 
-    // 全体のメソッド
-    public void probGene (int num, String question, String answer) {
+    // 問題生成用register
+    @Override
+    public void questionRegister(String question, String opt1, String opt2, String opt3, String opt4, String answer, String hint, String p) {
 
-        // APIキーの取得
+        // 通し番号(hintのデータベースと同じものを使う)
+        int number = logRepos.selectMaxNum() + 1;
+
+        //　APIキーを取得している
         ApiReader apiReader = new ApiReader();
         String API_KEY = apiReader.getAPI_KEY();
 
         // ライブラリを利用して、インスタンスを生成
         final var service = new OpenAiService(API_KEY);
 
-        // プロンプト関連をかく
+        // プロンプト
+        this.prompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever.\nHuman: " + p
+                + "\nAI: ";
 
-
-        // APIを叩いているところ
+        // ここでリクエストをしている　生成された選択肢をListに格納している。
         final var completionRequest = CompletionRequest.builder()
                 .model("text-davinci-003")
                 .prompt(prompt)
@@ -46,16 +51,16 @@ public class QuestionService {
         final var completionResult = service.createCompletion(completionRequest);
         final var choiceList = completionResult.getChoices();
 
-        // APIを叩いて帰ってきた文章を出力するところ
+        // 出力
         for (final CompletionChoice choice : choiceList) {
-            System.out.println("chatGPTが作った問題と解答、ヒント：" + choice.getText());
+            System.out.println("【DEBUG】chatGPTが作った問題： \n" + choice.getText());
             ReGPT = choice.getText();
         }
 
-        // データベースに出力されたものを収納
-        // 複数の問題が出てきた場合の処理をどうするのか
-
-
+        // データベースに保存
+        int n = logRepos.insert(number, question, opt1, opt2, opt3, opt4, answer, hint);
+        System.out.println("【DEBUG】正常に記録できました");
     }
+
 
 }
