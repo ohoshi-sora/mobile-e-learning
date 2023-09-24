@@ -43,8 +43,6 @@ public class HintMakerPage extends WebPage {
     private String option4;
 
     public HintMakerPage() {
-        var toHintPreview = new BookmarkablePageLink<>("toHintPreview", HintPreviewPage.class);
-        add(toHintPreview);
         var toHomeLink = new BookmarkablePageLink<>("toHome", HomePage.class);
         add(toHomeLink);
 
