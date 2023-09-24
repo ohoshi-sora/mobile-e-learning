@@ -27,12 +27,15 @@ public class ListPage extends WebPage {
         // ヒントをデータベースから取得
         var list = logRepository.selectAllHintTable();
 
+        System.out.println(list.get(0).getHint());
+
         // ヒントデータを表示するリストビュー
         DataView<HintBean> hintListView = new DataView<HintBean>("hintListView", new ListDataProvider<>(list)) {
             private static final long serialVersionUID = 1L;
 
             @Override
             protected void populateItem(Item<HintBean> item) {
+
                 HintBean hint = item.getModelObject();
                 item.add(new Label("id", hint.getQuestion()));
                 item.add(new Label("opt1", hint.getOption1()));
@@ -42,16 +45,16 @@ public class ListPage extends WebPage {
                 item.add(new Label("ans", hint.getAnswer()));
                 item.add(new Label("hint", hint.getHint()));
 
-                System.out.println(hint.getHint());
+                System.out.println("【DEBUG】" + hint.getHint());
 
             }
         };
-            //ページング処理、1ページに10個のデータを表示する。
+        // ページング処理、1ページに10個のデータを表示する。
         hintListView.setItemsPerPage(10);
 
         add(hintListView);
 
-            //wicketが提供するページングを使います。第2引数はDataViewであるrepeatです。
+        // wicketが提供するページングを使います。第2引数はDataViewであるrepeatです。
         add(new AjaxPagingNavigator("navigator", hintListView));
         add(hintListView);
 
