@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RadioChoice;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -69,6 +70,9 @@ public class HintMakerPage extends WebPage {
             SubmitButton submitButton = new SubmitButton("submit");
             form.add(submitButton);
 
+            FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
+            form.add(feedbackPanel);
+
             add(form);
         }catch (Exception e){
             e.printStackTrace();
@@ -90,6 +94,12 @@ public class HintMakerPage extends WebPage {
         @Override
         public void onSubmit() {
             super.onSubmit();
+
+            if(question==null||option1==null||option2==null||option3==null||option4==null||answer==null){
+                error("入力情報が不足しています。内容を確認して再度「ヒント自動生成」を押してください");
+                return;
+            }
+
             // 入力された問題文
             System.out.println("【DEBUG】問題 ：  " + question);
 
@@ -119,7 +129,6 @@ public class HintMakerPage extends WebPage {
     public String getAnswer() {
         return answer;
     }
-
 
 }
 
