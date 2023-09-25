@@ -2,6 +2,7 @@ package com.example.mobilesolomon.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -112,6 +113,7 @@ public class LogRepository implements ILogRepository {
     public List<HintBean> selectAllHintTable(){
         var sql = "SELECT * FROM HINT";
         List<HintBean> hints = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(HintBean.class));
+        System.out.println(hints);
         return hints;
     }
 
