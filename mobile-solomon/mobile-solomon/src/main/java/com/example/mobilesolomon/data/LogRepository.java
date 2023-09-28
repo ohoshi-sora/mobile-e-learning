@@ -112,6 +112,8 @@ public class LogRepository implements ILogRepository {
     public List<HintBean> selectAllHintTable(){
         var sql = "SELECT * FROM HINT";
         List<HintBean> hints = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(HintBean.class));
+        System.out.println(hints);
+        System.out.println(hints.get(1).getHint());
         return hints;
     }
 

@@ -1,52 +1,55 @@
 package com.example.mobilesolomon.data;
 
+
+
 import java.io.Serializable;
+
 
 public class HintBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     // メンバ変数
-    private int num;
-    private String question;
-    private String option1;
-    private String option2;
-    private String option3;
-    private String option4;
-    private String answer;
-    private String hint;
+    private int NUM;
+    private String QUESTION;
+    private String OPTION1;
+    private String OPTION2;
+    private String OPTION3;
+    private String OPTION4;
+    private String ANSWER;
+    private String HINT;
 
     // 引数なしデフォルトコンストラクタ
     public HintBean(){}
 
     public int getNum() {
-        return this.num;
+        return this.NUM;
     }
 
     public String getQuestion() {
-        return question;
+        return QUESTION;
     }
 
     public String getOption1() {
-        return option1;
+        return OPTION1;
     }
 
     public String getOption2() {
-        return option2;
+        return OPTION2;
     }
 
     public String getOption3() {
-        return option3;
+        return OPTION3;
     }
 
     public String getOption4() {
-        return option4;
+        return OPTION4;
     }
 
     public String getAnswer() {
-        return answer;
+        return ANSWER;
     }
 
     public String getHint() {
-        return hint;
+        return HINT;
     }
 }

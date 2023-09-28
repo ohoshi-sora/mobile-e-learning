@@ -27,7 +27,9 @@ public class ListPage extends WebPage {
         // ヒントをデータベースから取得
         var list = logRepository.selectAllHintTable();
 
-        System.out.println(list.get(0).getHint());
+        System.out.println(list);
+        System.out.println(list.get(1));
+        System.out.println(list.get(1).getOption1());
 
         // ヒントデータを表示するリストビュー
         DataView<HintBean> hintListView = new DataView<HintBean>("hintListView", new ListDataProvider<>(list)) {
