@@ -36,7 +36,7 @@ public class HintPreviewPage extends WebPage {
         add(new Label("option2", "イ：" + hintService.getOpt2()));
         add(new Label("option3", "ウ：" + hintService.getOpt3()));
         add(new Label("option4", "エ：" + hintService.getOpt4()));
-        add(new Label("answer", "解答：" + hintService.getAns()));
+        add(new Label("answer", "正答：" + hintService.getAns()));
 
 
 

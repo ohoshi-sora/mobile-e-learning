@@ -9,6 +9,8 @@ import org.apache.wicket.markup.html.WebPage;
 public class HintMakeCompPage extends WebPage {
 
     public HintMakeCompPage() {
+        var toHintMakeLink = new BookmarkablePageLink<>("toHintMake", HintMakerPage.class);
+        add(toHintMakeLink);
         var toHomeLink = new BookmarkablePageLink<>("toHome", HomePage.class);
         add(toHomeLink);
     }

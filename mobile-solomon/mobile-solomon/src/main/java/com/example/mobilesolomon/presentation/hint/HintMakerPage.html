@@ -18,18 +18,20 @@
         エ<textarea wicket:id="option4" cols="50"></textarea>
         <h2>操作3</h2>
         <p>正答を選択してください</p>
-            <RaidioChoice wicket:id="answer" class="radio-choice">
+            <RadioChoice wicket:id="answer" class="radio-choice">
                 <input type="radio"  name="opt" value="ア"> ア </input>
                 <input type="radio"  name="opt" value="イ"> イ </input>
                 <input type="radio"  name="opt" value="ウ"> ウ </input>
                 <input type="radio"  name="opt" value="エ"> エ </input>
-            </RaidioChoice>
+            </RadioChoice>
         <br>
         <br>
         <p></p>
         <p></p>
         <button wicket:id="submit">ヒント自動生成</button>
+        <span wicket:id="feedback"></span>
     </form>
+
 <p></p>
 <p></p>
 <button wicket:id="toHome">Homeへ戻る</button>

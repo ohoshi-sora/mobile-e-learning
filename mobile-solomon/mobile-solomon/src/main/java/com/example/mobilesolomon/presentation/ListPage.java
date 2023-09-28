@@ -3,10 +3,12 @@ package com.example.mobilesolomon.presentation;
 
 import com.example.mobilesolomon.data.HintBean;
 import com.example.mobilesolomon.data.ILogRepository;
+import com.example.mobilesolomon.presentation.hint.HintMakerPage;
 import com.example.mobilesolomon.service.HintService;
 import org.apache.wicket.ajax.markup.html.navigation.paging.AjaxPagingNavigator;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.repeater.Item;
@@ -59,6 +61,9 @@ public class ListPage extends WebPage {
         // wicketが提供するページングを使います。第2引数はDataViewであるrepeatです。
         add(new AjaxPagingNavigator("navigator", hintListView));
         add(hintListView);
+
+        var toHomeLink = new BookmarkablePageLink<>("toHome", HomePage.class);
+        add(toHomeLink);
 
     }
 
